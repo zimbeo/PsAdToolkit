@@ -1,7 +1,6 @@
 function New-Environment {
     param (
-        [System.Boolean]
-        $CleanUp
+        [bool]$CleanUp = $false
     )
 
     $RunPath = "$($env:USERPROFILE)\PsAdToolkit"
@@ -15,14 +14,14 @@ function New-Environment {
     if (-Not (Test-Path -Path $RunPath)) {
         New-Item -Path $RunPath -ItemType Directory
         
-        Write-Host -ForegroundColor Yellow "Created Directory for file storage"
+        Write-Output "Created Directory for file storage"
     }
 }
 
 function New-ActiveDirectoryUser {
     Clear-Host
-    Write-Host "Welcome to the User Creation Tool" -ForegroundColor Yellow
-    Write-Host "...................................`n" -ForegroundColor Yellow
+    Write-Output "Welcome to the User Creation Tool"
+    Write-Output "...................................`n"
     
     # Endless Loop
     while ($true) {
@@ -34,7 +33,7 @@ function New-ActiveDirectoryUser {
             Write-Output "Creating User $name....."
         }
         catch {
-            Write-Host -ForegroundColor Red "Something went wrong, see the below error"
+            Write-Output -ForegroundColor Red "Something went wrong, see the below error"
             Write-Output $Error[0]
             break
         }
@@ -44,7 +43,7 @@ function New-ActiveDirectoryUser {
             Write-Output "$name has been created...."
         }
         catch {
-            Write-Host -ForegroundColor Red "Something went wrong, see the below error"
+            Write-Output -ForegroundColor Red "Something went wrong, see the below error"
             Write-Output $Error[0]
         }
         
@@ -55,17 +54,17 @@ function New-ActiveDirectoryUser {
             continue
         }
         elseif ($again -eq "n") {
-            Write-Host "Bye! Come back later"
+            Write-Output "Bye! Come back later"
             break
         }
         
     }
 }
 
-function Get-DistributionGroups {
+function Get-DistributionGroup {
     Clear-Host
-    Write-Host "Welcome to the Distribution Group Auditing Tool" -ForegroundColor Yellow
-    Write-Host "...................................`n" -ForegroundColor Yellow
+    Write-Output "Welcome to the Distribution Group Auditing Tool"
+    Write-Output "...................................`n"
     
     # Get all the Distro Groups
     Get-ADGroup -Filter * | Where-Object -Property groupcategory -EQ -Value "distribution" | Select-Object -ExpandProperty name > "$($env:USERPROFILE)\PsAdToolkit\allgroups.txt"
@@ -100,10 +99,10 @@ function Start-PsAdToolkit {
     # Never Ending Menu Loop
     while ($true) {
         Clear-Host
-        Write-Host "Welcome to the PsAdToolkit" -ForegroundColor Green
-        Write-Host "..................................." -ForegroundColor Green
+        Write-Output "Welcome to the PsAdToolkit" -ForegroundColor Green
+        Write-Output "..................................." -ForegroundColor Green
 
-        Write-Host "`nPlease select from the following options:`n
+        Write-Output "`nPlease select from the following options:`n
         `r  1. Create a new AD user
         `r  2. Export Distribution Groups to CSV
         `r  3. Clean up the Script Directory
@@ -116,7 +115,7 @@ function Start-PsAdToolkit {
             New-ActiveDirectoryUser
         }
         elseif ($user_selection -eq 2) {
-            Get-DistributionGroups
+            Get-DistributionGroup
         }
         elseif ($user_selection -eq 3) {
             New-Environment -CleanUp $true
