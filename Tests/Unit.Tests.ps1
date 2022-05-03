@@ -12,32 +12,31 @@ $ModuleInformation = Import-Module -Name $ManifestFile -PassThru
 Describe "$ModuleName Module - Testing Manifest File (.psd1)" {
 	Context "Manifest" {
 		It "Should contains RootModule" {
-			$ModuleInformation.RootModule | Should -Not -BeNullOrEmpty
+			$ModuleInformation.RootModule | Should -NotBeNullOrEmpty
 		}
 
 		It "Should contains Author" {
-			$ModuleInformation.Author | Should -Not -BeNullOrEmpty
+			$ModuleInformation.Author | Should -NotBeNullOrEmpty
 		}
 
 		It "Should contains Company Name" {
-			$ModuleInformation.CompanyName | Should -Not -BeNullOrEmpty
+			$ModuleInformation.CompanyName | Should -NotBeNullOrEmpty
 		}
 
 		It "Should contains Description" {
-			$ModuleInformation.Description | Should -Not -BeNullOrEmpty
+			$ModuleInformation.Description | Should -NotBeNullOrEmpty
 		}
 
 		It "Should contains Copyright" {
-			$ModuleInformation.Copyright | Should -Not -BeNullOrEmpty
+			$ModuleInformation.Copyright | Should -NotBeNullOrEmpty
 		}
 
 		It "Should contains a Project Link" {
-			$ModuleInformation.ProjectURI | Should -Not -BeNullOrEmpty
+			$ModuleInformation.ProjectURI | Should -NotBeNullOrEmpty
 		}
 
 		It "Should contains a Tags (For the PSGallery)" {
-			$ModuleInformation.Tags.count | Should -Not -BeNullOrEmpty
-		}	
+			$ModuleInformation.Tags.count | Should -NotBeNullOrEmpty
 	}
 }
 Describe 'PSScriptAnalyzer tests' {
