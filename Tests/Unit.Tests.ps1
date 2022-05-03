@@ -37,6 +37,7 @@ Describe "$ModuleName Module - Testing Manifest File (.psd1)" {
 
 		It "Should contains a Tags (For the PSGallery)" {
 			$ModuleInformation.Tags.count | Should -NotBeNullOrEmpty
+		}
 	}
 }
 Describe 'PSScriptAnalyzer tests' {
