@@ -53,6 +53,6 @@ Describe 'PSScriptAnalyzer tests' {
 			'PSAvoidUsingConvertToSecureStringWithPlainText'
 		)
 
-		Invoke-ScriptAnalyzer -Path $PSScriptRoot -ExcludeRule $excludedRules -Severity Error | Select-Object -ExpandProperty RuleName | Should -BeNullOrEmpty
+		Invoke-ScriptAnalyzer -Path $PSScriptRoot -ExcludeRule $excludedRules -Severity Error | Select-Object -ExpandProperty RuleName | Should BeNullOrEmpty
 	}
 }
