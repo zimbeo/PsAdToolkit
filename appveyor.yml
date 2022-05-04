@@ -5,3 +5,8 @@ build_script:
 - ps: .\buildscripts\build.ps1
 test_script:
 - ps: .\buildscripts\test.ps1
+environment:
+  nuget_apikey:
+    secure: /tKj3sjZhJbioQFQYWtt4NifL3QyojP5hMDGqK2BJdvOJnYt5IcixtPrxokkKgy+
+after_test:
+- ps: .\buildscripts\publish.ps1
